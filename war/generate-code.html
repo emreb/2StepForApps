@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>
+	$(window).load(function(){
+
+		function generate(e) {
+		e.preventDefault();
+		var namespace = $("#app").val();
+		var username = $("#user").val();
+
+		
+		
+		var data = {
+			app: namespace,
+			user: username
+		}
+		
+    	$.ajax({
+  			dataType: 'json',
+  			data: data,
+  			
+  			url: '/register',
+  			success: function (response) {
+  	  			//do something with response
+  	  			console.log(response);
+  	  			console.log(response.url);
+  	  			console.log(response.key);
+  	  			$("#qrcode").attr('src',response.url);
+  	  			$("#key").text(response.key);
+  	  			$("#keyblock").show();
+  			}
+		});
+	
+		}
+	
+		function verify(e) {
+			e.preventDefault();
+			var result = false;
+			var keycode = $("#key").text();
+			var token_code = $("#VERIFICATION_CODE").val();
+			
+			var data = {
+		            key: keycode,
+		            token: token_code
+		        }
+		        
+		        $.ajax({
+		            dataType: 'json',
+		            data: data,
+		            
+		            url: '/verify',
+		            success: function (response) {
+		                //do something with response
+		                console.log(response);
+		                if (response.valid) {
+		                	$("#VERIFICATION_RESULT").html("&nbsp;It works");
+		                	$("#VERIFICATION_BLOCK").css('background-color','green');
+		                } else {
+		                	$("#VERIFICATION_RESULT").html("&nbsp;Incorrect Code!<BR>&nbsp;- Check if your phone's time is correct.<BR> - Make sure you are entering the code that is generated form the key/barcode shown above");
+		                	$("#VERIFICATION_BLOCK").css('background-color','red');
+		                	
+		                }
+		            }
+		        });
+			
+			$("VERIFICATION_RESULT").val(keycode+':'+token_code);
+		}
+	
+	$('#register').bind('submit', generate);
+	
+	$('#VERIFICATION_FORM').bind('submit', verify);
+	
+	
+	});
+	</script>
+  </head>
+
+  <body>
+  
+ <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#top">2 Step for Apps</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="/generate-code.html">Test it</a></li>
+              <li><a href="https://github.com/emreb/2StepForApps/wiki" target="_blank">API & Docs</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+	<a name="top"></a>
+    <div class="container">
+    
+    
+        <div class="hero-unit">
+        <div class="row">
+        <H1>Test it for yourself</H1>
+        
+        </div>
+    </div>
+
+<div class="hero-unit">
+    <div class="row">
+        
+        <div class="span8"><H2>1. Download Google Authenticator for your phone</H2>
+        
+        <p> Google Authenticator is freely available for Android, iOS, and Blacberry devices</p>
+        </div>
+        <div class="span2">
+        <img width="75" height="75" src="https://lh5.ggpht.com/zDDG4ipUo6g4p_PdTncne6sCGiLmPWfeAPjRaz3QfN2J6IpXO9gw_M_Z1iaxelEXeA4=w124">
+        </div>
+    </div>
+    <P></P>
+    <div class="row">    
+        
+        
+       
+	        <div class="span3" style="text-align:center"><img width="100" height="100" src="http://upload.wikimedia.org/wikipedia/commons/6/66/Android_robot.png"><a href="https://market.android.com/details?id=com.google.android.apps.authenticator2&hl=en"><Br>Download from Android Market</a></div>
+	        <div class="span3" style="text-align:center"><img width="100" height="100" src="http://stuff.nathantyler.com/wp-content/uploads/sites/4/2013/05/apple-frost-logo.png"><a href="http://itunes.apple.com/gb/app/google-authenticator/id388497605?mt=8"><BR>Download from iTunes Store</a></div>
+	        <div class="span3" style="text-align:center"><img width="100" height="100" src="http://standardista.com/velocity/images/blackberry.png">
+	        <BR>Open the web browser on your BlackBerry.
+<BR>Visit <a href="http://m.google.com/authenticator">m.google.com/authenticator</a>
+<BR>Download and install the application.</div>
+    </div>
+    
+    </div>
+    
+    <div class="hero-unit">
+    <div class="row">
+    <H2>2. Generate a random key and add to Google Authenticator
+    via QR Code</H2>
+      <div class="span3">
+        <form id="register">
+		  
+		  <br>Enter your application name: <input id="app" name="app">
+		  <br>User name or email: <input id="user" name="user">
+		  <br><input id="generate" type="submit" value="Generate" >
+		  
+		  </form>
+      </div>
+      <div class="span3"> <img id="qrcode"></div>
+      <div class="span9" style="display:none" id="keyblock">
+      Random key generated for the user:<BR> <span id="key"></span>
+     <P><h5>In real world you'd be saving this key against the user
+     in your system, so you can do lookups using this key to validate the 
+     token</h5></P></div>
+     </div>
+     </div>
+    
+     
+    
+
+    <div class="hero-unit">
+    <div class="row">
+  
+    <H2>3. Verify your code here:</H2>
+      <div class="span4">
+      Enter the code you see in your phone in this box and click verify.
+      
+      
+      <FORM id="VERIFICATION_FORM">
+      <INPUT TYPE="TEXT" id="VERIFICATION_CODE"><BR>
+      <input id="VERIFY" type="submit" value="VERIFY">
+      </FORM>
+      </div>
+      <div class="span4" id="VERIFICATION_BLOCK">
+        <SPAN id="VERIFICATION_RESULT"></SPAN>
+      </div>
+      
+   </div></div>
+   
+      <div class="hero-unit">
+         <div class="row">
+            <h3>Now try it for your self. Read the documentation and 
+               learn about different options about how you can implement and
+               integrate..
+            </h3>
+         </div>
+      </div>
+      </div>
+      
+      <footer>
+        <p>&copy; 2 Step for Apps 2012-2014</p>
+      </footer>
+   </body>
+</html>
