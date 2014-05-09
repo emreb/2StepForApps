@@ -20,10 +20,13 @@
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("1b13107903a12e507c4451feea7b01f2");</script><!-- end Mixpanel -->
   </head>
 
   <body>
-  
+  <script>mixpanel.track('Homepage load');</script>
  <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -37,7 +40,8 @@
             <ul class="nav">
               <li class="active"><a href="#top">Home</a></li>
               <li><a href="/generate-code.html">Test it</a></li>
-              <li><a href="https://github.com/emreb/2StepForApps/wiki" target="_blank">API & Docs</a></li>
+              <li><a href="https://github.com/emreb/2StepForApps/wiki" 
+              onClick="mixpanel.track('Wiki');" target="_blank">API & Docs</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -54,7 +58,8 @@
         as an online service to any application.<BR>
         Adding extra security for users has never been easier.
         </p><p>
-        Using our service and <a href="http://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451" target="_blank">Google Authenticator</a> app for smart phones 
+        Using our service and <a href="http://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451" 
+        onClick="mixpanel.track('GAuth click');" target="_blank">Google Authenticator</a> app for smart phones 
         you can provide extra 
         security for your application and its
         users. No more worrying about phished passwords. More security for online apps and their users.</p>
@@ -69,7 +74,8 @@
            much like you might see on your banking website: user name, your password, 
            plus a code obtained using your phone. It helps you add the powerful extra security
            of something that only your users' phone knows that changes every 30 seconds.</p>
-          <p><a class="btn" href="http://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">Learn more about why it is secure &raquo;</a></p>
+          <p><a class="btn" href="http://en.wikipedia.org/wiki/Two-factor_authentication" 
+          onClick="mixpanel.track('2F Doc click');" target="_blank">Learn more about why it is secure &raquo;</a></p>
         </div>
         <div class="span4">
           <h2>It is Free</h2>
@@ -88,7 +94,8 @@
           to open this service and its code to all developers and interested parties who would
           like to implement it and improve it. Our code base, wiki, and developer SDKs can be 
           found on our GitHub repository.</p>
-          <p><a class="btn" href="https://github.com/emreb/2StepForApps/" target="_blank">Visit GitHub Repository &raquo;</a></p>
+          <p><a class="btn" href="https://github.com/emreb/2StepForApps/" 
+           onClick="mixpanel.track('Git repo click');" target="_blank">Visit GitHub Repository &raquo;</a></p>
         </div>
       </div>
 
@@ -101,7 +108,7 @@
            run on your users computers that can generate time base passwords. For
            most of the mobile devices, Google has published <a 
            href="http://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451" 
-           target="_blank">Google Authenticator</a>. 
+            onClick="mixpanel.track('GAuth click');" target="_blank">Google Authenticator</a>. 
            Using Google Authenticator app on mobile phones and 2 Step for Apps,
            your users can generate and have access to their time varying passwords
            for extra security. Nowadays, since everyone has a smart phone, we think
@@ -113,7 +120,7 @@
           <h2>Google Authenticator</h2>
            <p><a 
            href="http://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451" 
-           target="_blank">Google Authenticator</a> is a mobile application that allows you to 
+           onClick="mixpanel.track('GAuth click');" target="_blank">Google Authenticator</a> is a mobile application that allows you to 
            generate 2-step verification codes on your smartphone without a required network connection.
            2 Step Verification for Apps can issue codes for and use Google Authenticator
            for securing your users' logins.</p>
@@ -126,8 +133,10 @@
           that support it. For more
           information about the developer tools, the SDKs, and reporting issues
           please see our Wiki and Issues pages on GitHub. </p>
-          <p><a class="btn" href="https://github.com/emreb/2StepForApps/wiki" target="_blank">Visit us on GitHub &raquo;</a></p>
-        <p><a class="btn btn-primary" href="https://groups.google.com/forum/#!forum/2step-dev">Sign up to Developer Group Forum&raquo;</a></p>
+          <p><a class="btn" href="https://github.com/emreb/2StepForApps/wiki" 
+          onClick="mixpanel.track('Wiki click');" target="_blank">Visit us on GitHub &raquo;</a></p>
+        <p><a class="btn btn-primary" onClick="mixpanel.track('Forum click');" 
+        href="https://groups.google.com/forum/#!forum/2step-dev" target="_blank">Sign up to Developer Group Forum&raquo;</a></p>
         </div>
       </div>
 
@@ -138,7 +147,8 @@
         <a name="about"></a>
         <h1>About</h1>
         <p>2 Step for Apps is made possible thanks to Google for providing and advocating
-        Google Authenticator and to <a href="http://tools.ietf.org/html/rfc6238" target="_blank">TOTP</a>, time based one time password algorithm.
+        Google Authenticator and to <a href="http://tools.ietf.org/html/rfc6238" 
+        onClick="mixpanel.track('TOTP click');"target="_blank">TOTP</a>, time based one time password algorithm.
         With these two systems you can keep your users' accounts safer.</p>
         
         </div>
