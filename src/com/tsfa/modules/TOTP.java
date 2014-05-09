@@ -252,7 +252,7 @@ public class TOTP {
 
   public static String getQRCodeURL(String app, String email, String secret) {
 
-    return "http://chart.apis.google.com/chart?cht=qr&chs=200x200&chld=L&choe=UTF-8&chl"
+    return "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=L&choe=UTF-8&chl"
         + "=otpauth://totp/"
         + email
         + "%3Fsecret%3D"
