@@ -9,5 +9,12 @@
 	</system-properties>
 	<threadsafe> 
 	    true
-	    </threadsafe> 
+  </threadsafe>
+  
+  <static-files>
+        <include path="/**.html"/>
+        <include path="/**.ico"/>
+        <include path="/css/**.css"/>
+  </static-files>
+  
 </appengine-web-app>

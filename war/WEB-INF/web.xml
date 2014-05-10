@@ -21,12 +21,9 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	
-	<threadsafe>true</threadsafe>
 	
-	<static-files>
-        <include path="/*.html"/>
-        <include path="/*.ico"/>
-  </static-files>
+	
+	
  <servlet>
   <servlet-name>SystemServiceServlet</servlet-name>
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
